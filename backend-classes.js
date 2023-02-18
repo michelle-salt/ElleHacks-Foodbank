@@ -169,6 +169,21 @@ class donationApplication {
         this.organizationID = organizationID;
         this.day = day;
     }
+
+    get getLocation() {
+        return this.location;
+    }
+    get getOrganizationID() {
+        return this.organizationID;
+    }
+    get getDay() {
+        return this.day;
+    }
+
+    set setLocation(location) {
+        this.location = location;
+    }
+    set 
 }
 
 
