@@ -13,7 +13,9 @@ class logIn{
         let scheduledOrgDonations = [];
         for (donation in scheduledDonations) {
             if (donation.getOrganizationID == organizationID) {
-                scheduledOrgDonations.push(donation);
+                if (donation.getPickedUp == false){
+                    scheduledOrgDonations.push(donation);
+                }
             }
         }
         return scheduledOrgDonations;
