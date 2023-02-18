@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form>
+  <label id="postal-code">Postal Code:</label><br>
+  <input type="text" id="postal-code" name="postal_code"><br>
+  <label for="pickup-date">Choose a pickup date:</label><br>
+  <select name="pickup date" id="pickup-date">
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+  </select>
+  <input type="button" onclick = "toDoFunction()" value="Find a FoodBank"/>
+</form>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    x.innerHTML = "yay";
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+  
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+
+<script src="findFoodBank.js" async defer></script>
+
+</body>
+</html>
+

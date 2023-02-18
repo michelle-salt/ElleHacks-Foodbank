@@ -9,15 +9,23 @@
 // }
 
 class foodBank {
-    constructor(organizationID) {
-        this.organizationID = organizationID;
+    constructor(username, password) {
+        this.username = username;
+        this.password = password;
+        this.orgName;
         this.location;
         this.hours = operationHours();
         this.aboutMe;
     }
 
-    get getOrganizationID() {
-        return this.organizationID;
+    get getUsername() {
+        return this.username;
+    }
+    get getPassword() {
+        return this.password;
+    }
+    get getOrgName() {
+        return this.orgName;
     }
     get getLocation() {
         return this.location;
@@ -29,8 +37,14 @@ class foodBank {
         return this.aboutMe;
     }
 
-    set setOrganization(organizationID) {
-        this.organizationID = organizationID;
+    set setUsername(username) {
+        this.username = username;
+    }
+    set setPassword(password) {
+        this.password = password;
+    }
+    set setOrgName(orgName) {
+        this.orgName = orgName;
     }
     set setLocation(location) {
         this.location = location;
