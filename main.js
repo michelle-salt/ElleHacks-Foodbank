@@ -1,0 +1,2 @@
+let logInDictionary = {};
+let scheduledDonations = {};

@@ -1,15 +1,20 @@
-let logInDataBase = new Map(); // the key is the organization 
-
 class logIn{
     verifyLogIn(organizationID, password) {
-        if (!(organizationID in logInDataBase)) {
+        if (!(organizationID in logInDictionary)) {
             return 1;
-        } if (logInDataBase[organizationID] != password) {
+        } if (logInDictionary[organizationID] != password) {
             return 1;
         } else {
             return 0;
         }
     }
 
-    accessScheduledDonations
+    accessScheduledDonations(organizationID) {
+        let scheduledDonations = [];
+        for (donation in scheduledDonations) {
+            if (donation.getOrganizationID == organizationID) {
+                
+            }
+        }
+    }
 }

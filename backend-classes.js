@@ -168,6 +168,7 @@ class donationApplication {
         this.location = location;
         this.organizationID = organizationID;
         this.day = day;
+        this.pickedUp = false;
     }
 
     get getLocation() {
@@ -179,11 +180,22 @@ class donationApplication {
     get getDay() {
         return this.day;
     }
+    get getPickedUp() {
+        return this.pickedUp;
+    }
 
     set setLocation(location) {
         this.location = location;
     }
-    set 
+    set setOrganizationID(organizationID) {
+        this.organizationID = organizationID;
+    }
+    set setDay(day) {
+        this.day = day;
+    }
+    set setPickedUp(pickedUp) {
+        this.pickedUp = pickedUp;
+    }
 }
 
 
