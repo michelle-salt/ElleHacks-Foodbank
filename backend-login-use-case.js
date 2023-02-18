@@ -10,11 +10,16 @@ class logIn{
     }
 
     accessScheduledDonations(organizationID) {
-        let scheduledDonations = [];
+        let scheduledOrgDonations = [];
         for (donation in scheduledDonations) {
             if (donation.getOrganizationID == organizationID) {
-                
+                scheduledOrgDonations.push(donation);
             }
         }
+        return scheduledOrgDonations;
+    }
+
+    changeDonationStatus(donation, pickedUp) {
+        donation.setPickedUp(pickedUp);
     }
 }
