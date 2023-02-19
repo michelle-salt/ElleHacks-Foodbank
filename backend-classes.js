@@ -8,12 +8,14 @@
 //     }
 // }
 
-class foodBank {
+export default class foodBank {
     constructor(username, password) {
         this.username = username;
         this.password = password;
         this.orgName;
         this.location;
+        this.lat;
+        this.long;
         this.hours = operationHours();
         this.aboutMe;
     }
@@ -29,6 +31,12 @@ class foodBank {
     }
     get getLocation() {
         return this.location;
+    }
+    get getLat() {
+        return this.lat;
+    }
+    get getLong() {
+        return this.long;
     }
     get getHours() {
         return this.hours;
@@ -49,6 +57,12 @@ class foodBank {
     set setLocation(location) {
         this.location = location;
     }
+    set setLat(lat) {
+        this.lat = lat;
+    }
+    set setLong(long) {
+        this.long = long;
+    }
     set setHours(hours) {
         this.hours = hours;
     }
@@ -57,7 +71,7 @@ class foodBank {
     }
 }
 
-class operationHours {
+export class operationHours {
     constructor() {
         this.sunday = [false, null, null];
         this.monday = [false, null, null];
@@ -163,17 +177,36 @@ class operationHours {
     }
 }
 
-class donationApplication {
-    constructor(location, organizationID, day) {
-        this.location = location;
+export class donationApplication {
+    constructor(lat, long, organizationID, day) {
+        this.lat = lat;
+        this.long = long;
         this.organizationID = organizationID;
         this.day = day;
         this.pickedUp = false;
+        this.distanceFrom;
     }
 
-    get getLocation() {
-        return this.location;
+    degreesToRadians(degrees) {
+        return degrees * Math.PI / 180;
     }
+      
+    distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
+        var earthRadiusKm = 6371;
+      
+        var dLat = degreesToRadians(lat2-lat1);
+        var dLon = degreesToRadians(lon2-lon1);
+      
+        lat1 = degreesToRadians(lat1);
+        lat2 = degreesToRadians(lat2);
+      
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      
+        return earthRadiusKm * c;
+    }
+
     get getOrganizationID() {
         return this.organizationID;
     }
@@ -183,10 +216,16 @@ class donationApplication {
     get getPickedUp() {
         return this.pickedUp;
     }
-
-    set setLocation(location) {
-        this.location = location;
+    get getDistanceFrom() {
+        return this.distanceFrom;
     }
+    get getLat() {
+        return this.lat;
+    }
+    get getLong() {
+        return this.long;
+    }
+
     set setOrganizationID(organizationID) {
         this.organizationID = organizationID;
     }
@@ -196,6 +235,16 @@ class donationApplication {
     set setPickedUp(pickedUp) {
         this.pickedUp = pickedUp;
     }
+    set setLat(lat) {
+        this.lat = lat;
+    }
+    set setLong(long) {
+        this.long = long;
+    }
+    set setDistanceFrom(latLong) {
+        this.distanceFrom = distanceInKmBetweenEarthCoordinates(latLong[0], latLong[1], this.lat, this.long);
+    }
 }
+
 
 
