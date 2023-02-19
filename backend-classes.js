@@ -8,51 +8,51 @@
 //     }
 // }
 
-class foodBank {
+export class foodBank {
     constructor(username, password) {
         this.username = username;
         this.password = password;
-        this.orgName;
+        this.orgName = "bad";
         this.location;
-        this.hours = operationHours();
+        this.hours = new operationHours();
         this.aboutMe;
     }
 
-    get getUsername() {
+    getUsername() {
         return this.username;
     }
-    get getPassword() {
+    getPassword() {
         return this.password;
     }
-    get getOrgName() {
+    getOrgName() {
         return this.orgName;
     }
-    get getLocation() {
+    getLocation() {
         return this.location;
     }
-    get getHours() {
+    getHours() {
         return this.hours;
     }
-    get getAboutMe() {
+    getAboutMe() {
         return this.aboutMe;
     }
 
-    set setUsername(username) {
+    setUsername(username) {
         this.username = username;
     }
-    set setPassword(password) {
+    setPassword(password) {
         this.password = password;
     }
-    set setOrgName(orgName) {
+    setOrgName(orgName) {
         this.orgName = orgName;
     }
-    set setLocation(location) {
+    setLocation(location) {
         this.location = location;
     }
-    set setHours(hours) {
+    setHours(hours) {
         this.hours = hours;
     }
-    set setAboutMe(aboutMe) {
+    setAboutMe(aboutMe) {
         this.aboutMe;
     }
 }
@@ -68,47 +68,47 @@ class operationHours {
         this.saturday = [false, null, null];
     }
 
-    get getSunday() {
-        return this.sunday[0];
+    getSunday() {
+        return this.sunday;
     }
-    get getMonday() {
-        return this.monday[0];
+    getMonday() {
+        return this.monday;
     }
-    get getTuesday() {
-        return this.tuesday[0];
+    getTuesday() {
+        return this.tuesday;
     }
-    get getWednesday() {
-        return this.wednesday[0];
+    getWednesday() {
+        return this.wednesday;
     }
-    get getThursday() {
-        return this.thursday[0];
+    getThursday() {
+        return this.thursday;
     }
-    get getFriday() {
-        return this.friday[0];
+    getFriday() {
+        return this.friday;
     }
-    get getSaturday() {
-        return this.saturday[0];
+    getSaturday() {
+        return this.saturday;
     }
 
-    set setSunday([collecting, start, end]) {
+    setSunday([collecting, start, end]) {
         this.sunday = [collecting, start, end];
     }
-    set setMonday([collecting, start, end]) {
+    setMonday([collecting, start, end]) {
         this.monday = [collecting, start, end];
     }
-    set setTuesday([collecting, start, end]) {
+    setTuesday([collecting, start, end]) {
         this.tuesday = [collecting, start, end];
     }
-    set setWednesday([collecting, start, end]) {
+    setWednesday([collecting, start, end]) {
         this.wednesday = [collecting, start, end];
     }
-    set setThursday([collecting, start, end]) {
+    setThursday([collecting, start, end]) {
         this.thursday = [collecting, start, end];
     }
-    set setFriday([collecting, start, end]) {
+    setFriday([collecting, start, end]) {
         this.friday = [collecting, start, end];
     }
-    set setSaturday([collecting, start, end]) {
+    setSaturday([collecting, start, end]) {
         this.saturday = [collecting, start, end];
     }
 
@@ -171,29 +171,29 @@ class donationApplication {
         this.pickedUp = false;
     }
 
-    get getLocation() {
+    getLocation() {
         return this.location;
     }
-    get getOrganizationID() {
+    getOrganizationID() {
         return this.organizationID;
     }
-    get getDay() {
+    getDay() {
         return this.day;
     }
-    get getPickedUp() {
+    getPickedUp() {
         return this.pickedUp;
     }
 
-    set setLocation(location) {
+    setLocation(location) {
         this.location = location;
     }
-    set setOrganizationID(organizationID) {
+    setOrganizationID(organizationID) {
         this.organizationID = organizationID;
     }
-    set setDay(day) {
+    setDay(day) {
         this.day = day;
     }
-    set setPickedUp(pickedUp) {
+    setPickedUp(pickedUp) {
         this.pickedUp = pickedUp;
     }
 }
