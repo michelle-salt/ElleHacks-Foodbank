@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script type="module" src="../../findFoodBank.js"></script>
-  </head>
 <body>
-
-
 <form>
   <label for="pickup-date">Choose a pickup day:</label><br>
   <select name="pickup day" id="pickup-day">
@@ -18,7 +13,8 @@
     <option value="Sunday">Sunday</option>
   </select>
 
-  <input type="button" onclick="parseLocation();" value="Find a FoodBank"/>
+  <input type="button" id='response-parse-button' value="Find a FoodBank"/>
+  <script type="module" src="../../findFoodBank.js"></script>
 </form>
 
 </body>

@@ -1,6 +1,6 @@
 
-import * as backendClasses from './backend-classes.js';
-import * as  backendUseCases from './backend-login-use-case.js';
+import {foodBank} from './backend-classes.js';
+//import {operationHours} from 'backend-classes.js';
 
 var nameList;
 var latitude;
@@ -10,22 +10,18 @@ var pickup_day;
 // dummy data
 
 // food bank
-var testFoodBank = new backendClasses.foodBank("gracefung", "mypassword");
-console.log(testFoodBank)
+var testFoodBank = new foodBank("gracefung", "mypassword");
 testFoodBank.setOrgName("Grace's organization");
 testFoodBank.setLocation(("43.77377887675926", "-79.50191131533997"));
-var testOperationHours = testFoodBank.getHours();
-testOperationHours.setSunday([true, "11:26 AM", "5:00 PM"]);
-testOperationHours.setMonday([false, "11:26 AM", "5:00 PM"]);
-testOperationHours.setTuesday([true, "11:26 AM", "5:00 PM"]);
-testOperationHours.setWednesday([false, "10:26 AM", "5:00 PM"]);
-testOperationHours.setThursday([true, "11:26 AM", "5:00 PM"]);
-testOperationHours.setFriday([false, "11:26 AM", "5:00 PM"]);
-testOperationHours.setSaturday([true, "11:26 AM", "6:00 PM"]);
-testFoodBank.setHours(testOperationHours);
+testFoodBank.getHours().setSunday([true, "11:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setMonday([false, "11:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setTuesday([true, "11:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setWednesday([false, "10:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setThursday([true, "11:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setFriday([false, "11:26 AM", "5:00 PM"]);
+testFoodBank.getHours().setSaturday([true, "11:26 AM", "6:00 PM"]);
 ////////////////
 pickup_day = "Monday";
-
 
 // dummy success:
 export function success(position) {
@@ -34,7 +30,13 @@ export function success(position) {
     nameList = [testFoodBank];
     // redirect to other html file
     location.href = "listOfFoodBanks.html";
-    
+
+    // var wrapper = document.getElementById("myHTMLWrapper");
+    // var myHTML = '';
+    // for (var i = 0; i < 10; i++) {
+    //     myHTML += '<span class="test">Testing out my script! loop #' + (i + 1) + '</span><br/><br/>';
+    // }/*  w w  w  . j av a  2  s. c o  m*/
+    // wrapper.innerHTML = myHTML
 
     // put data on other html file
     for (var i = 0; i < nameList.length; i++) {
@@ -44,8 +46,10 @@ export function success(position) {
         b.name = nameList[i].orgName;
         // on click it displays the food bank's details
         b.onclick = showDetails(nameList[i]);
+        document.getElementById('food-banks-here').appendChild(b);
     }
-}
+
+    
 
 
 // export function success(position) {
@@ -65,17 +69,19 @@ export function success(position) {
 //         b.onclick = showDetails(nameList[i]);
 //     }
 // }
+}
 
 export function error(geoError) {
     console.log("error: could not get location");
 }  
 
-const parseLocation = () => {
+export function parseResponse() {
     pickup_day = document.getElementById('pickup-day');
     getLocation();
 }
+document.getElementById('response-parse-button').addEventListener('click', parseResponse);
 
-export {parseLocation};
+
 
 export function getLocation() {
   if (navigator.geolocation) {
@@ -85,7 +91,7 @@ export function getLocation() {
   }
 }
 
-export function showDetails(foodBank) {
+export function showDetails(thisFoodBank) {
     /*
     redirect to another html page where we will show the details 
     of this foodbank (name, pickup time range) along with a button
@@ -102,25 +108,25 @@ export function showDetails(foodBank) {
     var orgHours = NULL;
     switch(day) {
         case "Monday":
-            orgHours = document.createTextNode(foodBank.getHours().getMonday + " to " + foodBank.getHours().getMonday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getMonday + " to " + thisFoodBank.getHours().getMonday[1]);
             break;
         case "Tuesday":
-            orgHours = document.createTextNode(foodBank.getHours().getTuesday + " to " + foodBank.getHours().getTuesday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getTuesday + " to " + thisFoodBank.getHours().getTuesday[1]);
             break;
         case "Wednesday":
-            orgHours = document.createTextNode(foodBank.getHours().getWednesday + " to " + foodBank.getHours().getWednesday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getWednesday + " to " + thisFoodBank.getHours().getWednesday[1]);
             break;
         case "Thursday":
-            orgHours = document.createTextNode(foodBank.getHours().getThursday + " to " + foodBank.getHours().getThursday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getThursday + " to " + thisFoodBank.getHours().getThursday[1]);
             break;
         case "Friday":
-            orgHours = document.createTextNode(foodBank.getHours().getFriday + " to " + foodBank.getHours().getFriday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getFriday + " to " + thisFoodBank.getHours().getFriday[1]);
             break;
         case "Saturday":
-            orgHours = document.createTextNode(foodBank.getHours().getSaturday + " to " + foodBank.getHours().getSaturday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getSaturday + " to " + thisFoodBank.getHours().getSaturday[1]);
             break;
         case "Sunday":
-            orgHours = document.createTextNode(foodBank.getHours().getSunday + " to " + foodBank.getHours().getSunday[1]);
+            orgHours = document.createTextNode(thisFoodBank.getHours().getSunday + " to " + thisFoodBank.getHours().getSunday[1]);
             break;
 
     }

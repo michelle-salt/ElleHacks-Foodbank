@@ -12,7 +12,7 @@ export class foodBank {
     constructor(username, password) {
         this.username = username;
         this.password = password;
-        this.orgName = "bad";
+        this.orgName;
         this.location;
         this.hours = new operationHours();
         this.aboutMe;
@@ -53,7 +53,7 @@ export class foodBank {
         this.hours = hours;
     }
     setAboutMe(aboutMe) {
-        this.aboutMe;
+        this.aboutMe = aboutMe;
     }
 }
 
@@ -198,14 +198,15 @@ export class donationApplication {
     setPickedUp(pickedUp) {
         this.pickedUp = pickedUp;
     }
-    set setLat(lat) {
+    setLat(lat) {
         this.lat = lat;
     }
-    set setLong(long) {
+    setLong(long) {
         this.long = long;
     }
-    set setDistanceFrom(latLong) {
-        this.distanceFrom = distanceInKmBetweenEarthCoordinates(latLong[0], latLong[1], this.lat, this.long);
+    setDistanceFrom(latLong) {
+        // this.distanceFrom = new distanceInKmBetweenEarthCoordinates(latLong[0], latLong[1], this.lat, this.long);
+        this.distanceFrom = latLong;
     }
 }
 
