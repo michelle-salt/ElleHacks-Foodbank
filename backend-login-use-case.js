@@ -1,23 +1,9 @@
-import foodBank, { operationHours } from './backend-classes.js';
-import './backend-login.js'; 
+import * as backendClasses from './backend-classes.js';
+// import './backend-login.js'; 
 
 let foodBanks = []; // list of all food banks as FoodBank instances
 let logInDataBase = new Map(); // the key is the username, value is the password 
 let scheduledDonations = {};
-
-class signUpValidation(username, password1, password2) => {
-    if (username in logInDataBase)
-        return 3
-    if (!hasLowerCase(password1) || !hasUpperCase(password1) || !(/\d/.test(password1)) || password1.length < 6 || password1.length > 15)
-        return 2
-    if (password2 != password1)
-        return 1
-
-    logInDataBase.set(username, password1)
-    let foodBank = new FoodBank(username, password1)
-    foodBanks.push(foodBank)
-    return 0
-}
 
 /*
 * input should come in the form of an array, like so:
@@ -26,20 +12,36 @@ class signUpValidation(username, password1, password2) => {
 * true/false is if the day is in operation
 * startTime/endTime must be strings (e.g. "11:26am"). Can be null if above is false
 */
-class setUpInfo(username, orgName, location, daysTimes, about) {
-    for (foodBank in foodBanks) {
-        if (foodBank.username == username) {
-            foodBank.setOrgName(orgName);
-            foodBank.setLocation(location);
-            foodBank.setAbout(about);
-            // set days and hours of operation
-            hours = new OperationHours()
-            for (date in daysTimes) {
-                day = date[0]
-                dayValues = [date[1], date[2], date[3]]
-                hours.setDay(day, dayValues)
+class signUp {
+    signUpValidation(username, password1, password2) {
+        if (username in logInDataBase)
+            return 3
+        if (!hasLowerCase(password1) || !hasUpperCase(password1) || !(/\d/.test(password1)) || password1.length < 6 || password1.length > 15)
+            return 2
+        if (password2 != password1)
+            return 1
+    
+        logInDataBase.set(username, password1)
+        let foodBank = new backendClasses.FoodBank(username, password1)
+        foodBanks.push(foodBank)
+        return 0
+    }
+
+    setUpInfo(username, orgName, location, daysTimes, about) {
+        for (foodBank in foodBanks) {
+            if (foodBank.username == username) {
+                foodBank.setOrgName(orgName);
+                foodBank.setLocation(location);
+                foodBank.setAbout(about);
+                // set days and hours of operation
+                hours = new backendClasses.OperationHours()
+                for (date in daysTimes) {
+                    day = date[0]
+                    dayValues = [date[1], date[2], date[3]]
+                    hours.setDay(day, dayValues)
+                }
+                foodBank.setHours(hours)
             }
-            foodBank.setHours(hours)
         }
     }
 }
@@ -53,7 +55,7 @@ class setUpInfo(username, orgName, location, daysTimes, about) {
 //     document.write(add);
 // }
 
-class logIn{
+class logIn {
     verifyLogIn(organizationID, password) {
         if (!(organizationID in logInDictionary)) {
             return 1;
@@ -95,5 +97,15 @@ class logIn{
 
     changeDonationStatus(donation, pickedUp) {
         donation.setPickedUp(pickedUp);
+    }
+}
+
+class scheduleDonation{
+    scheduleNewDonation(organizationID, day) {
+        let newDonation = new backendClasses.donationApplication();
+        newDonation.organizationID = organizationID;
+        newDonation.day = day;
+        newDonation.location = (-79.4259, 43.7512);
+        scheduledDonations.push(newDonation);
     }
 }
