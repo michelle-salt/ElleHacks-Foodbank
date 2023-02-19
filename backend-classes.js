@@ -57,7 +57,7 @@ export class foodBank {
     }
 }
 
-class operationHours {
+export class operationHours {
     constructor() {
         this.sunday = [false, null, null];
         this.monday = [false, null, null];
@@ -163,12 +163,14 @@ class operationHours {
     }
 }
 
-class donationApplication {
-    constructor(location, organizationID, day) {
-        this.location = location;
+export class donationApplication {
+    constructor(lat, long, organizationID, day) {
+        this.lat = lat;
+        this.long = long;
         this.organizationID = organizationID;
         this.day = day;
         this.pickedUp = false;
+        this.distanceFrom;
     }
 
     getLocation() {
@@ -196,6 +198,16 @@ class donationApplication {
     setPickedUp(pickedUp) {
         this.pickedUp = pickedUp;
     }
+    set setLat(lat) {
+        this.lat = lat;
+    }
+    set setLong(long) {
+        this.long = long;
+    }
+    set setDistanceFrom(latLong) {
+        this.distanceFrom = distanceInKmBetweenEarthCoordinates(latLong[0], latLong[1], this.lat, this.long);
+    }
 }
+
 
 
